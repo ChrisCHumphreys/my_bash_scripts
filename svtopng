@@ -16,3 +16,8 @@ build_pngs_from_sv() {
 	done
 }
 
+if [[ $# == 1 ]]; then
+	dot -Tpng $1 -o ${1%gv}png;
+else 
+	echo "Usage: gvtopng <graphviz_file>";
+fi;
