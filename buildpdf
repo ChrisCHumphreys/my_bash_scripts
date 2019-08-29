@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [[ $# != 1 ]]; then
+	echo "Usage: buildpdf <tex-file> -- Do not use file extension, ie .tex";
+elif [[ ! -e $1.pdf ]]; then
+	echo "Error: $1.pdf not found";
+	exit;
+else
+	echo -e "\nBuilding PDF\n";
+	pdflatex $1;
+	rm $1.aux $1.log;
+	echo -e "\n\e[94mCompleted building $1.pdf\n\e[0m";
+fi
