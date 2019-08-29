@@ -9,10 +9,9 @@
 
 build_pngs_from_sv() {
 	for i in *.gv; do
-		echo -e "\nBuilding Graphs\n";
 		dot -Tpng $i -o ${i%gv}png;
 		if [[ $? == 0 ]]; then
-			echo -e "\n${i%gv}png built successfully\n";
+			echo -e "\t${i%gv}png built successfully";
 		fi;
 	done
 }
