@@ -5,12 +5,15 @@
 # File: svtopng
 # Description: simple little script that compiles all graphviz source files in 
 # the current directory and builds them into .png files
+# Requirements: must have graphviz installed.
 
-for i in *.gv; do
-	echo -e "\nBuilding Graphs\n";
-	dot -Tpng $i -o ${i%gv}png;
-	if [[ $? == 0 ]]; then
-		echo -e "\n${i%gv}png built successfully\n";
-	fi;
-done
+build_pngs_from_sv() {
+	for i in *.gv; do
+		echo -e "\nBuilding Graphs\n";
+		dot -Tpng $i -o ${i%gv}png;
+		if [[ $? == 0 ]]; then
+			echo -e "\n${i%gv}png built successfully\n";
+		fi;
+	done
+}
 

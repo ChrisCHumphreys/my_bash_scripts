@@ -1,11 +1,24 @@
 #!/bin/bash
 
+# Author: Chris Humphreys
+# File: buildpdf
+# Description: converts all sv files to png's and then builds the latex document
+# into a pdf and deletes the auxilary files.
+# Requirements: Must have pdflatex, and graphviz commands installed.  Update 
+# path to match location of local scripts on your system. Also depends on the
+# svtopng script which must also be saved in your local scripts directory.
+
+scripts_path="$HOME/scripts";
+. $scripts_path/svtopng;
+
 if [[ $# != 1 ]]; then
 	echo "Usage: buildpdf <tex-file> -- Do not use file extension, ie .tex";
 elif [[ ! -e $1.pdf ]]; then
 	echo "Error: $1.pdf not found";
 	exit;
 else
+	echo -e "\nBuilding PNG files from GV files";
+	build_pngs_from_sv
 	echo -e "\nBuilding PDF\n";
 	pdflatex $1;
 	rm $1.aux $1.log;
